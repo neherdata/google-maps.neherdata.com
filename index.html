@@ -1,84 +1,69 @@
 <!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
 <html lang="en-US">
 
 <head>
-  <meta charset="utf-8">
-  <title>Google Maps | Neher Data Systems</title>
-  <meta name="viewport" content="width=device-width" />
+  <title>Google Maps JS | Neher Data Systems</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
+  <!-- <link rel="stylesheet" type="text/css" href="./style.css" /> -->
   <style>
-    #map-container {
-      width: 100%;
-      height: 640px;
+    * {
+      /* box-sizing: border-box; */
+      font-family: monospace;
     }
 
-    h1 {
-      font-family: "Lucida Console", Courier, monospace;
-      font-style: oblique;
+    #map {
+      height: 100%;
+      width: 100%;
+      align-self: center;
+    }
+
+    /* 
+ * Optional: Makes the sample page fill the window. 
+ */
+    html,
+    body {
+      /* height: 100%; */
+      /* margin: 0; */
+      /* padding: auto; */
+      font-family: monospace;
       text-align: center;
     }
 
-    p {
-      font-family: "Lucida Console", Courier, monospace;
-      font-style: normal;
-      text-align: start;
+    /* Style the footer */
+    footer {
+      background-color: #f1f1f1;
+      padding: 10px;
+      text-align: left;
+      -webkit-text-size-adjust: auto;
+      text-size-adjust: auto;
     }
   </style>
-
-  <!-- TODO: Add the value of data-initial-token with a JWT dynamically generated on the server -->
-  <script src="https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.core.js" crossorigin async data-callback="initMapKit"
-    data-libraries="map,services,full-map,geojson"
-    data-initial-token="eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik1YTTlQRlRTMkYifQ.eyJpc3MiOiI3UUFNM0xHU1NDIiwiaWF0IjoxNjc3OTIxNTQzLCJleHAiOjE3MDk1MTA0MDB9.Anu5SLkMd9vWuqVjDtWe9ZV8K7LlwBD0fEtD8TetmIdAnRdZaDQt3EQBa3EYqF3lVGvjvRm_GzRNpyZq6X8m9w"></script>
-  <script type="module">
-    /**
-     * Wait for MapKit JS to be loaded by the script tag,
-     * calls `mapkit.init` to set authorizationCallback with your JWT.
-     */
-    const setupMapKitJs = async () => {
-      if (!window.mapkit || window.mapkit.loadedLibraries.length === 0) {
-        // mapkit.core.js or the libraries are not loaded yet.
-        // Set up the callback and wait for it to be called.
-        await new Promise(resolve => { window.initMapKit = resolve });
-
-        // Clean up
-        delete window.initMapKit;
-      }
-
-      // TODO: For production use, the JWT should not be hard-coded into JS.
-      const jwt = "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik1YTTlQRlRTMkYifQ.eyJpc3MiOiI3UUFNM0xHU1NDIiwiaWF0IjoxNjc3OTIxNTQzLCJleHAiOjE3MDk1MTA0MDB9.Anu5SLkMd9vWuqVjDtWe9ZV8K7LlwBD0fEtD8TetmIdAnRdZaDQt3EQBa3EYqF3lVGvjvRm_GzRNpyZq6X8m9w";
-      mapkit.init({
-        authorizationCallback: done => { done(jwt); }
-      });
-    };
-
-    /**
-     * Script Entry Point
-     */
-    const main = async () => {
-      await setupMapKitJs();
-
-      const secretariat = new mapkit.CoordinateRegion(
-        new mapkit.Coordinate(40.3083382, -74.0697479),
-        new mapkit.CoordinateSpan(0.167647972, 0.354985255)
-      );
-
-      // Create a map in the element whose ID is "map-container"
-      const map = new mapkit.Map("map-container", { colorScheme: mapkit.Map.ColorSchemes.Dark });
-      map.region = secretariat;
-    };
-
-    main();
-
-  </script>
+  <script type="module" src="./index.ts"></script>
 </head>
 
 <body>
-  <h1>Apple Maps MapKit JS | Neher Data Systems</h1>
-  <div id="map-container"></div>
-</body>
+  <div id="map"></div>
 
-<footer>
-  <p>© 2023 Neher Data Systems</p>
-</footer>
+  <!-- 
+      The `defer` attribute causes the callback to execute after the full HTML
+      document has been parsed. For non-blocking uses, avoiding race conditions,
+      and consistent behavior across browsers, consider loading using Promises
+      with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+      -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+    defer></script>
+
+  <div class="footer">
+    <p>© Tyler M. Neher 2023</p>
+  </div>
+
+</body>
 
 </html>
