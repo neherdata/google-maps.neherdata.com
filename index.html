@@ -7,61 +7,27 @@
 <html lang="en-US">
 
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Google Maps JS | Neher Data Systems</title>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
-  <!-- <link rel="stylesheet" type="text/css" href="./style.css" /> -->
-  <style>
-    * {
-      /* box-sizing: border-box; */
-      font-family: monospace;
-    }
-
-    #map {
-      height: 100%;
-      width: 100%;
-      align-self: center;
-    }
-
-    /* 
- * Optional: Makes the sample page fill the window. 
- */
-    html,
-    body {
-      /* height: 100%; */
-      /* margin: 0; */
-      /* padding: auto; */
-      font-family: monospace;
-      text-align: center;
-    }
-
-    /* Style the footer */
-    footer {
-      background-color: #f1f1f1;
-      padding: 10px;
-      text-align: left;
-      -webkit-text-size-adjust: auto;
-      text-size-adjust: auto;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" type="text/css" />
   <script type="module" src="./index.ts"></script>
+  <div id="header">Neher Data Systems | Google Maps JS API</div>
 </head>
 
 <body>
-  <div id="map"></div>
 
-  <!-- 
-      The `defer` attribute causes the callback to execute after the full HTML
-      document has been parsed. For non-blocking uses, avoiding race conditions,
-      and consistent behavior across browsers, consider loading using Promises
-      with https://www.npmjs.com/package/@googlemaps/js-api-loader.
-      -->
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
-    defer></script>
-
-  <div class="footer">
-    <p>© Tyler M. Neher 2023</p>
+  <div id="all">
+    <iframe id="google-map" title="google-map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCRL3JVDBAqBBpBJm93DSBtfaGBhUfTwTo
+    &q=Neher+Data+Systems" allowfullscreen>
+    </iframe>
+  </div>
+  <div id="footer">
+    <p>
+      <center>© Neher Data Systems 2023</center>
+    </p>
   </div>
 
 </body>
